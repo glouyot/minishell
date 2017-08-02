@@ -6,22 +6,22 @@
 #    By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/11 17:19:59 by glouyot           #+#    #+#              #
-#    Updated: 2017/08/02 15:03:42 by glouyot          ###   ########.fr        #
+#    Updated: 2017/08/02 15:48:30 by glouyot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := minishell
+NAME		:= minishell
 
-INCLUDES := -I../includes
-INC_PATH := ./includes
-INC := ../includes/minishell.h
+INCLUDES	:= -I../include
+INC_PATH	:= ./include
+INC			:= builtins.h
 
-FLAGS := -Wall -Werror -Wextra -O2
+FLAGS		:= -Wall -Werror -Wextra
 
-ARGS := ./libft
-LIBNAME := libft.a
+ARGS		:= ./libft
+LIBNAME		:= libft.a
 
-OBJECTS := 	srcs/minishell.o\
+OBJECTS		:= builtins/ft_echo.o\
 
 
 ifneq ($(shell make -q -C libft; echo $$?), 0)
