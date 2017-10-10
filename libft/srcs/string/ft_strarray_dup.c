@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strarray_dup.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/08 10:41:34 by glouyot           #+#    #+#             */
-/*   Updated: 2017/10/10 14:35:07 by glouyot          ###   ########.fr       */
+/*   Created: 2017/09/25 14:29:23 by glouyot           #+#    #+#             */
+/*   Updated: 2017/09/27 13:58:55 by glouyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "libft.h"
 
-int		main(int ac, char **av, char **env)
+char	**ft_strarray_dup(char **src, size_t s)
 {
-	t_env	*tenv;
+	char	**ret;
+	int		i;
 
-	tenv = ft_initenv(env);
-	if (ac && av)
-		;
-	m_loop();
-	ft_delenv();
-	return (EXIT_SUCCESS);
+	if (!(ret = (char **)ft_memalloc(sizeof(char *) * s)))
+		return (NULL);
+	i = 0;
+	while (src[i])
+	{
+		ret[i] = ft_strdup(src[i]);
+		i++;
+	}
+	return (ret);
 }

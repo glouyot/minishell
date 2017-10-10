@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/08 10:41:34 by glouyot           #+#    #+#             */
-/*   Updated: 2017/10/10 14:35:07 by glouyot          ###   ########.fr       */
+/*   Created: 2017/09/24 11:35:05 by glouyot           #+#    #+#             */
+/*   Updated: 2017/09/24 13:40:46 by glouyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int		main(int ac, char **av, char **env)
+int		ft_exit(char **av)
 {
-	t_env	*tenv;
-
-	tenv = ft_initenv(env);
-	if (ac && av)
-		;
-	m_loop();
-	ft_delenv();
-	return (EXIT_SUCCESS);
+	return (av ? -1 : -1);
 }

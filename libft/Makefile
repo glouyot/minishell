@@ -6,7 +6,7 @@
 #    By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/27 13:22:03 by glouyot           #+#    #+#              #
-#    Updated: 2017/06/14 11:12:32 by glouyot          ###   ########.fr        #
+#    Updated: 2017/10/09 19:51:52 by glouyot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ SRC_NAME	= convert/ft_atoi.c				\
 			  string/ft_strcchr.c			\
 			  string/ft_strchr.c			\
 			  string/ft_strclr.c			\
+			  string/ft_strsplit_fct.c		\
 			  string/ft_strcmp.c			\
 			  string/ft_strcpy.c			\
 			  string/ft_strdel.c			\
@@ -83,6 +84,7 @@ SRC_NAME	= convert/ft_atoi.c				\
 			  string/ft_strequ.c			\
 			  string/ft_striter.c			\
 			  string/ft_striteri.c			\
+			  string/ft_strarray_dup.c		\
 			  string/ft_strjoin.c			\
 			  string/ft_strjoini.c			\
 			  string/ft_strlcat.c			\
@@ -102,8 +104,10 @@ SRC_NAME	= convert/ft_atoi.c				\
 			  string/ft_strsub.c			\
 			  string/ft_strtrim.c			\
 			  string/ft_tolower.c			\
+			  string/ft_strarrayadd.c		\
 			  string/ft_toupper.c			\
 			  string/ft_str_tab_len.c		\
+			  string/ft_array_free.c		\
 			  maths/ft_updiv.c				\
 			  utilities/ft_two_comp.c		\
 			  utilities/get_next_line.c		\

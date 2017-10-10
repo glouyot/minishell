@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_array_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/08 10:41:34 by glouyot           #+#    #+#             */
-/*   Updated: 2017/10/10 14:35:07 by glouyot          ###   ########.fr       */
+/*   Created: 2017/09/23 14:05:29 by glouyot           #+#    #+#             */
+/*   Updated: 2017/10/05 16:26:21 by glouyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int		main(int ac, char **av, char **env)
+void	ft_array_free(char **array)
 {
-	t_env	*tenv;
+	int		i;
 
-	tenv = ft_initenv(env);
-	if (ac && av)
-		;
-	m_loop();
-	ft_delenv();
-	return (EXIT_SUCCESS);
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	if (array)
+		free(array);
 }

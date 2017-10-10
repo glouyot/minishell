@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/08 10:41:34 by glouyot           #+#    #+#             */
-/*   Updated: 2017/10/10 14:35:07 by glouyot          ###   ########.fr       */
+/*   Created: 2017/10/03 10:18:11 by glouyot           #+#    #+#             */
+/*   Updated: 2017/10/03 10:19:21 by glouyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int		main(int ac, char **av, char **env)
+void		ft_errornoenv(char *env)
 {
-	t_env	*tenv;
-
-	tenv = ft_initenv(env);
-	if (ac && av)
-		;
-	m_loop();
-	ft_delenv();
-	return (EXIT_SUCCESS);
+	ft_putstr_fd(env, 2);
+	ft_putendl_fd(": Undefined variable.", 2);
 }

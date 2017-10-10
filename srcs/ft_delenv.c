@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_delenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/08 10:41:34 by glouyot           #+#    #+#             */
-/*   Updated: 2017/10/10 14:35:07 by glouyot          ###   ########.fr       */
+/*   Created: 2017/09/27 15:58:28 by glouyot           #+#    #+#             */
+/*   Updated: 2017/10/09 13:25:35 by glouyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int		main(int ac, char **av, char **env)
+void	ft_delenv(void)
 {
-	t_env	*tenv;
+	t_env	*env;
 
-	tenv = ft_initenv(env);
-	if (ac && av)
-		;
-	m_loop();
-	ft_delenv();
-	return (EXIT_SUCCESS);
+	env = ft_initenv(NULL);
+	ft_array_free(env->key);
+	ft_array_free(env->value);
+	free(env);
 }

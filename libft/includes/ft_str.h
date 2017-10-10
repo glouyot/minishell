@@ -6,13 +6,15 @@
 /*   By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 13:10:15 by glouyot           #+#    #+#             */
-/*   Updated: 2017/06/14 11:11:47 by glouyot          ###   ########.fr       */
+/*   Updated: 2017/10/09 19:51:31 by glouyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_STR_H
 # define FT_STR_H
 
+void					ft_array_free(char **array);
+char					**ft_strarrayadd(char **src, char *add);
 char					*ft_strcat(char *dst, char const *src);
 int						ft_strcchr(char const *s, int c);
 char					*ft_strchr(char const *s, int c);
@@ -48,5 +50,7 @@ char					*ft_strtrim(char const *s);
 int						ft_strichr(const char *str, int c);
 char					*ft_stpcpy(char *dst, const char *src);
 size_t					ft_str_tab_len(char **src);
+char					**ft_strsplit_fct(char const *s, int (*split)(int));
+char					**ft_strarray_dup(char **src, size_t s);
 
 #endif

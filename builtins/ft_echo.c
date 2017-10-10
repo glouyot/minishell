@@ -5,23 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/02 15:43:49 by glouyot           #+#    #+#             */
-/*   Updated: 2017/08/02 15:54:42 by glouyot          ###   ########.fr       */
+/*   Created: 2017/09/24 11:41:09 by glouyot           #+#    #+#             */
+/*   Updated: 2017/10/06 16:26:22 by glouyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/builtins.h"
+#include "../include/minishell.h"
 
-int     main(int ac, char **av)
+char	*ft_getvalue(char *cmd)
 {
-    int i;
+	char	*key;
+	char	*ret;
+	size_t	i;
 
-    i = 0;
-    while(i++ < ac - 1)
-    {
-        ft_putstr(av[i]);
-        if (i < ac - 1)
-            ft_putchar(' ');
-    }
-    ft_putendl("");
+	i = 1;
+	key = (char *)ft_strnew(ft_strlen(cmd) - 1);
+	while (i < ft_strlen(cmd))
+	{
+		key[i - 1] = cmd[i];
+		i++;
+	}
+	ret = ft_getstrenv(key);
+	return (ret);
+}
+
+int		ft_echo(char **av)
+{
+	int		i;
+	char	*value;
+
+	i = 0;
+	while (av[++i])
+	{
+		if (i > 1)
+			ft_putchar(' ');
+		if (av[i][0] != '$')
+			ft_putstr(av[i]);
+		else
+		{
+			value = ft_getvalue(av[i]);
+			if (value)
+			{
+				ft_putstr(value);
+				free(value);
+			}
+		}
+	}
+	ft_putchar('\n');
+	return (0);
 }
