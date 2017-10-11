@@ -6,13 +6,13 @@
 /*   By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 13:08:07 by glouyot           #+#    #+#             */
-/*   Updated: 2017/10/10 13:02:47 by glouyot          ###   ########.fr       */
+/*   Updated: 2017/10/11 15:15:32 by glouyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static void	ft_prompt(void)
+void		ft_prompt(void)
 {
 	char	*prompt;
 	char	**secu;
@@ -45,15 +45,18 @@ void		m_loop(void)
 	{
 		ft_prompt();
 		get_next_line(0, &line);
-		exec = ft_strsplit(line, ';');
-		i = 0;
-		while (exec[i] && status >= 0)
+		if (line)
 		{
-			cmd = ft_strsplit_fct(exec[i++], *ft_isspace);
-			status = m_exec(cmd);
-			ft_array_free(cmd);
+			exec = ft_strsplit(line, ';');
+			i = 0;
+			while (exec[i] && status >= 0)
+			{
+				cmd = ft_strsplit_fct(exec[i++], *ft_isspace);
+				status = m_exec(cmd);
+				ft_array_free(cmd);
+			}
+			free(line);
+			ft_array_free(exec);
 		}
-		free(line);
-		ft_array_free(exec);
 	}
 }

@@ -6,11 +6,23 @@
 /*   By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 11:36:55 by glouyot           #+#    #+#             */
-/*   Updated: 2017/10/09 13:13:47 by glouyot          ###   ########.fr       */
+/*   Updated: 2017/10/11 13:48:41 by glouyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+static void	ft_cdnorm(char *pwd, char *oldpwd)
+{
+	char	**tmp;
+
+	tmp = ft_strsplit(ft_strjoini("old=PWD=", oldpwd, 2), '=');
+	ft_setenv(tmp);
+	ft_array_free(tmp);
+	tmp = ft_strsplit(ft_strjoini("old=OLDPWD=", pwd, 2), '='); 
+	ft_setenv(tmp);
+	ft_array_free(tmp);
+}
 
 static int	ft_gotooldpwd(t_env *env)
 {
@@ -19,15 +31,12 @@ static int	ft_gotooldpwd(t_env *env)
 	int		ret;
 
 	oldpwd = (ft_getstrenv("OLDPWD")) ? ft_getstrenv("OLDPWD") : NULL;
-	pwd = ft_strnew(4096);
+	pwd = NULL;
 	pwd = (ft_getstrenv("PWD")) ? ft_getstrenv("PWD") : getcwd(pwd, 4096);
 	if (ft_inenv("OLDPWD", env))
 	{
 		if (!chdir(oldpwd))
-		{
-			ft_setenv(ft_strsplit(ft_strjoini("old=PWD=", oldpwd, 2), '='));
-			ft_setenv(ft_strsplit(ft_strjoini("old=OLDPWD=", pwd, 2), '='));
-		}
+			ft_cdnorm(pwd, oldpwd);
 		ret = 0;
 	}
 	else
@@ -51,10 +60,14 @@ static char	*ft_cleantild(t_env *env)
 
 static void	ft_newpwd(void)
 {
-	ft_setenv(ft_strsplit(ft_strjoini("w=OLDPWD=",
-			ft_getstrenv("PWD"), 2), '='));
-	ft_setenv(ft_strsplit(ft_strjoini("w=PWD=",
-			getcwd(ft_strnew(4096), 4096), 2), '='));
+	char	**tmp;
+
+	tmp = ft_strsplit(ft_strjoini("w=OLDPWD=", ft_getstrenv("PWD"), 2), '=');
+	ft_setenv(tmp);
+	ft_array_free(tmp);
+	tmp = ft_strsplit(ft_strjoini("w=PWD=", getcwd(ft_strnew(4096), 4096), 2), '=');
+	ft_setenv(tmp);
+	ft_array_free(tmp);
 }
 
 int			ft_cd(char **av)
@@ -76,7 +89,7 @@ int			ft_cd(char **av)
 	}
 	else if (av[1] && ft_strequ(av[1], "-") == 1)
 		return (ft_gotooldpwd(env));
-	else if (!chdir(av[1]))
+	else if (av[1] && !chdir(av[1]))
 		ft_newpwd();
 	return (0);
 }

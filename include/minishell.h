@@ -6,7 +6,7 @@
 /*   By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 16:11:38 by glouyot           #+#    #+#             */
-/*   Updated: 2017/10/10 12:21:20 by glouyot          ###   ########.fr       */
+/*   Updated: 2017/10/11 15:07:08 by glouyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
 # define NBR_BUILTINS (int)8
-# define PATH 1
 
 typedef struct	s_blts
 {
@@ -55,6 +54,8 @@ void			ft_delenv(void);
 char			**ft_envchar(void);
 char			*ft_getstrenv(char *cmd);
 void			ft_errornoenv(char *env);
-void			ft_cleanenv(t_env **env);
+void			ft_cleanenv(t_env *env);
+void			signals(int);
+void			ft_prompt();
 
 #endif

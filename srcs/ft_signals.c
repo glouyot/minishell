@@ -1,28 +1,28 @@
-/* ************************************************************************** */
+
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_array_free.c                                    :+:      :+:    :+:   */
+/*   ft_signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/23 14:05:29 by glouyot           #+#    #+#             */
-/*   Updated: 2017/10/11 17:18:12 by glouyot          ###   ########.fr       */
+/*   Created: 2017/10/11 14:07:27 by glouyot           #+#    #+#             */
+/*   Updated: 2017/10/11 14:07:27 by glouyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include <signal.h>
+#include "../include/minishell.h"
 
-void	ft_array_free(char **array)
+void	signals(int signum)
 {
-	int		i;
-
-	i = 0;
-	while array[i])
+	if (signum == 2)
 	{
-		free(array[i]);
-		i++;
+		ft_putendl("");
+		ft_prompt();
 	}
-	if (array)
-		free(array);
+	else
+	{
+		ft_putendl("coucou");
+		ft_putendl(ft_itoa(signum));
+	}
 }

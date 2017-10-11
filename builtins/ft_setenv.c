@@ -6,7 +6,7 @@
 /*   By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 11:36:30 by glouyot           #+#    #+#             */
-/*   Updated: 2017/10/06 16:25:04 by glouyot          ###   ########.fr       */
+/*   Updated: 2017/10/11 13:52:57 by glouyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ static int	ft_addenv(char *key, char *value, t_env *env)
 	s = ft_str_tab_len(env->key);
 	tmp = ft_strarray_dup(env->key, sizeof(char *) * (s + 1));
 	tmp[s] = ft_strdup(key);
+	ft_array_free(env->key);	
 	env->key = ft_strarray_dup(tmp, sizeof(char *) * (s + 1));
 	ft_array_free(tmp);
 	if (value)
 	{
 		tmp = ft_strarray_dup(env->value, sizeof(char *) * (s + 1));
 		tmp[s] = (value != NULL) ? ft_strdup(value) : " ";
+		ft_array_free(env->value);
 		env->value = ft_strarray_dup(tmp, sizeof(char *) * (s + 1));
 		ft_array_free(tmp);
 	}
@@ -49,16 +51,23 @@ int			ft_setenv(char **av)
 	int		index;
 	int		len;
 
-	env = ft_initenv(NULL);
-	len = ft_str_tab_len(av);
-	if (len <= 3 && len > 1)
+	if (av[1])
 	{
-		index = ft_inenv(av[1], env);
-		if (index >= 0)
-			env->value[index] = (!(av[2]) ? " " : ft_strdup(av[2]));
-		else
-			ft_addenv(av[1], (av[2]) ? av[2] : " ", env);
-		return (0);
+		env = ft_initenv(NULL);
+		len = ft_str_tab_len(av);
+		if (len <= 3 && len > 1)
+		{
+			index = ft_inenv(av[1], env);
+			if (index >= 0)
+			{
+				ft_strdel(&(env->value[index]));
+				env->value[index] = (!(av[2]) ? " " : ft_strdup(av[2]));
+			}
+			else
+				ft_addenv(av[1], (av[2]) ? av[2] : " ", env);
+			return (0);
+		}
+		ft_array_free(av);
 	}
 	return (1);
 }

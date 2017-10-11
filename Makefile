@@ -6,7 +6,7 @@
 #    By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/11 17:19:59 by glouyot           #+#    #+#              #
-#    Updated: 2017/10/10 15:11:42 by glouyot          ###   ########.fr        #
+#    Updated: 2017/10/11 14:21:22 by glouyot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ OBJECTS		:= 	builtins/ft_echo.o\
 				builtins/ft_help.o\
 				builtins/ft_getenv.o\
 			   	srcs/minishell.o\
+				srcs/ft_signals.o\
 				srcs/ft_error.o\
 				srcs/loop.o\
 				srcs/exec.o\

@@ -6,7 +6,7 @@
 /*   By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/23 15:49:25 by glouyot           #+#    #+#             */
-/*   Updated: 2017/10/10 12:18:07 by glouyot          ###   ########.fr       */
+/*   Updated: 2017/10/11 17:01:08 by glouyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,34 +42,6 @@ static char		*ft_gencmd(char *cmd)
 	return (NULL);
 }
 
-static char		**m_checkpath(char **env)
-{
-	t_env	*tenv;
-	char	*line;
-	char	**ret;
-	int		fd;
-	char	*add;
-
-	tenv = ft_initenv(NULL);
-	if (ft_inenv("PATH", tenv) == -1)
-	{
-		add = ft_strjoin("PATH=", "");
-		ret = env;
-		fd = open("/etc/paths", O_RDONLY);
-		while (get_next_line(fd, &line) == 0)
-		{
-			add = ft_strjoini(add, ft_strjoin(ft_strdup(line), ":"), 1);
-			free(line);
-		}
-		ft_putendl(add);
-		ft_strarrayadd(env, add);
-		for(int i = 0; env[i];i++)
-		ft_putendl(env[i]);
-		ft_strdel(&add);
-	}
-	return (env);
-}
-
 static int		m_execute(char **cmd)
 {
 	pid_t	pid;
@@ -78,7 +50,7 @@ static int		m_execute(char **cmd)
 	char	**env;
 	int		ret;
 
-	env = (PATH == 0) ? m_checkpath(ft_envchar()) : ft_envchar();
+	env = ft_envchar();
 	ret = 0;
 	pid = fork();
 	if (pid == 0)
@@ -97,7 +69,7 @@ static int		m_execute(char **cmd)
 		while (!WIFEXITED(state) && !WIFSIGNALED(state))
 			wpid = waitpid(pid, &state, WUNTRACED);
 	}
-	//ft_array_free(env);
+	ft_array_free(env);
 	return (ret);
 }
 

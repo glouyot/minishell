@@ -6,7 +6,7 @@
 /*   By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 11:41:09 by glouyot           #+#    #+#             */
-/*   Updated: 2017/10/06 16:26:22 by glouyot          ###   ########.fr       */
+/*   Updated: 2017/10/11 13:16:40 by glouyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*ft_getvalue(char *cmd)
 		i++;
 	}
 	ret = ft_getstrenv(key);
+	ft_strdel(&key);
 	return (ret);
 }
 
