@@ -6,7 +6,7 @@
 /*   By: glouyot <glouyot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 11:36:55 by glouyot           #+#    #+#             */
-/*   Updated: 2017/10/11 13:48:41 by glouyot          ###   ########.fr       */
+/*   Updated: 2017/10/12 11:16:53 by glouyot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ static int	ft_gotooldpwd(t_env *env)
 	char	*oldpwd;
 	char	*pwd;
 	int		ret;
+	char	*tmp;
 
-	oldpwd = (ft_getstrenv("OLDPWD")) ? ft_getstrenv("OLDPWD") : NULL;
+	tmp = ft_getstrenv("OLDPWD");
+	oldpwd = tmp ? tmp : NULL;
 	pwd = NULL;
 	pwd = (ft_getstrenv("PWD")) ? ft_getstrenv("PWD") : getcwd(pwd, 4096);
 	if (ft_inenv("OLDPWD", env))
